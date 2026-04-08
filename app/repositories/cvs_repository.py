@@ -4,6 +4,10 @@ class CSVRepository:
    def __init__(self,file_path: str):
        self.df = pd.read_csv(file_path)
 
+   """ Return the first n places from the repository """
+   def get_places(self,n):
+       return self.df.head(n)
+
    """ Return places filter by key and value passed by argument """
    def filter(self, **kwargs):
        df = self.df
