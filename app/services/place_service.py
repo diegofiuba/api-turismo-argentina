@@ -31,3 +31,10 @@ class PlaceService:
        df = repo.filter(province = province,city = city)
        records = df.to_dict(orient="records")
        return PlaceService.__clean(records)   
+
+   """ Search and returns places that contain the words passed by parameter """
+   @staticmethod
+   def search_places(query: str):
+       df = repo.search(query)
+       records = df.to_dict(orient="records")
+       return PlaceService.__clean(records)

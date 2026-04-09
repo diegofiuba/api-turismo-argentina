@@ -13,3 +13,7 @@ def get_places(province:str = Query(None,description="province"),
 
 ):
     return PlaceService.filter_places(province,city)
+
+@router.get("/search",description="Get a list of places that contain the words passed by parameter")
+def search_places(query: str = Query(None,description="query")):
+    return PlaceService.search_places(query)
