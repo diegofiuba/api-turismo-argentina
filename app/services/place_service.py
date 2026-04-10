@@ -24,6 +24,7 @@ class PlaceService:
     @staticmethod
     def get_places(
         limit: int = 10,
+        offset: int = 0,
         province: str = None,
         city: str = None,
         keywords: str = None,
@@ -75,6 +76,8 @@ class PlaceService:
             # sort by proximity
             df = df.sort_values(by="distance_km")
 
-        df = df.head(limit)
+        # pagination			
+        df = df.iloc[ offset : offset+limit ]
+        		
         records = df.to_dict(orient="records")
         return PlaceService.__clean(records)

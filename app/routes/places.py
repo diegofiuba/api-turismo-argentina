@@ -5,6 +5,7 @@ router = APIRouter()
 
 @router.get("/",description="Get a list of places")
 def get_places(limit: int = Query(10,description="Limit of places to list"),
+               offset: int = Query(0,description="Offset of places to list"),  
                province:str = Query(None,description="province of the places to filter"),
                city:str = Query(None,description="city of the places to filter"),
                keywords: str = Query(None,description="keywords to find a place"),
