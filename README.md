@@ -8,3 +8,14 @@
 - Search by name
 - Filters by city and province
 - Nearby search using geographic coordinates
+
+## Data structure 
+
+The data source is a CSV file containing:
+
+- name
+- type
+- latitude
+- longitude
+- province
+- city
