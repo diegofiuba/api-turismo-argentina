@@ -19,3 +19,27 @@ The data source is a CSV file containing:
 - longitude
 - province
 - city
+
+## Endpoints
+
+### GET /places
+
+Return a list of tourist places.
+
+Support query parameters for:
+
+- keywords
+- city
+- province
+- latitude
+- longitude
+- radius
+- limit
+- offset
+
+### Examples
+
+```http
+GET /places?keywords=cerro
+GET /places?city=salta
+GET /places?lat=-34.6&lon=-58.38&radius=50
