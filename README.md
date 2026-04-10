@@ -43,3 +43,12 @@ Support query parameters for:
 GET /places?keywords=cerro
 GET /places?city=salta
 GET /places?lat=-34.6&lon=-58.38&radius=50
+
+## How to run
+
+pip install -r requirements.txt
+uvicorn main:app --reload
+
+## Example of usage
+
+curl "http://localhost:8000/places?search=cerro"
