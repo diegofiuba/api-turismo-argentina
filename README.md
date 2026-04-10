@@ -53,3 +53,9 @@ uvicorn main:app --reload
 ## Example of usage
 
 curl "http://localhost:8000/places?search=cerro"
+
+## Architecture
+
+- Router: handles HTTP requests
+- Service: business logic (filter, search, distance calculation)
+- Repository: data access layer (CSV)
