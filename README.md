@@ -52,7 +52,7 @@ uvicorn main:app --reload
 
 ## Example of usage
 
-curl "http://localhost:8000/places?search=cerro"
+curl "http://localhost:8000/places?keywords=cerro"
 
 ## Architecture
 
