@@ -12,4 +12,4 @@ def get_places(limit: int = Query(10,description="Limit of places to list"),
                latitude: float = Query(None,description="latitude to find nearby places"),
                longitude: float = Query(None,description="longitude to find nearby places"), 
                radius: float = Query(10,description="radius to find nearby places")):
-    return PlaceService.get_places(limit,province,city,keywords,latitude,longitude,radius)
+    return PlaceService.get_places(limit,offset,province,city,keywords,latitude,longitude,radius)
