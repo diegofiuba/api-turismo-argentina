@@ -32,7 +32,7 @@ class PlaceService:
         longitude: float = None,
         radius: float = None
     ):
-        df = repo.df
+        df = repo.get_places()
 
         # filter places
         if province:
