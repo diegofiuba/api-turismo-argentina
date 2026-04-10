@@ -43,6 +43,7 @@ Support query parameters for:
 GET /places?keywords=cerro
 GET /places?city=salta
 GET /places?lat=-34.6&lon=-58.38&radius=50
+```
 
 ## How to run
 
