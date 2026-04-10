@@ -42,7 +42,7 @@ Support query parameters for:
 ```http
 GET /places?keywords=cerro
 GET /places?city=salta
-GET /places?lat=-34.6&lon=-58.38&radius=50
+GET /places?latitude=-34.6&longitude=-58.38&radius=50
 ```
 
 ## How to run
