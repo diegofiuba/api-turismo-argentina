@@ -47,7 +47,7 @@ GET /places?lat=-34.6&lon=-58.38&radius=50
 
 ## How to run
 
-pip install -r requirements.txt
+pip install -r requirements.txt<br>
 uvicorn main:app --reload
 
 ## Example of usage
