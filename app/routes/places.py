@@ -1,4 +1,5 @@
-from fastapi import APIRouter, Query , HTTPException
+from fastapi import APIRouter, Query
+from fastapi.responses import JSONResponse
 from app.services.place_service import PlaceService
 
 router = APIRouter()
@@ -15,15 +16,27 @@ def get_places(limit: int = Query(10,ge=1,le=100,description="Limit of places to
 
     # parameters validation			   
     if radius is not None and (latitude is None or longitude is None):
-        raise HTTPException(
+        return JSONResponse(
             status_code = 400,
-            detail = "latitude and longitude are required when using radius"			
+            content = {
+                "success": False,
+                "error": {
+                    "code": "INVALID_PARAMS",
+                    "message": "latitude and longitude are required when using radius"                    					
+                }				
+            }
         )
 
     if (latitude is not None and longitude is None) or (longitude is not None and latitude is None):
-        raise HTTPException(
+        return JSONResponse(
             status_code = 400,
-            detail = "both latitude and longitude must be provided together"  			
-        ) 	
-	
+            content = {
+                "success": False,
+                "error": {
+                    "code": "INVALID_PARAMS",
+                    "message": "both latitude and longitude must be provided together"                    					
+                }				
+            }        
+        )        
+    
     return PlaceService.get_places(limit,offset,province,city,keywords,latitude,longitude,radius)
