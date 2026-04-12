@@ -46,7 +46,7 @@ class PlaceService:
             df = df[df["name"].str.contains(keywords, case=False, na=False)]
 
         # nearby places
-        if latitude and longitude and radius:
+        if latitude is not None and longitude is not None and radius is not None:
             R = 6371  # earth radius in km
 
             # conversion from degrees to radians
