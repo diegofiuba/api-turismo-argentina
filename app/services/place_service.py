@@ -76,8 +76,21 @@ class PlaceService:
             # sort by proximity
             df = df.sort_values(by="distance_km")
 
+        total = len(df)			
+			
         # pagination			
         df = df.iloc[ offset : offset+limit ]
         		
-        records = df.to_dict(orient="records")
-        return PlaceService.__clean(records)
+        records = PlaceService.__clean(df.to_dict(orient="records"))
+        return {
+            "success": True,
+            "message": "Places retrieved successfully",
+            "data": records,
+            "pagination":{
+                 "total": total,
+                 "limit": limit,
+                 "offset": offset,
+                 "has_next": offset + limit < total,
+                 "has_prev": offset > 0				 
+			} 			
+		}
