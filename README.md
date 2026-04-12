@@ -56,20 +56,20 @@ GET /places/?keywords=glaciar%20perito%20moreno&latitude=-50.4690325&longitude=-
   "data":[
    {
      "name":"Glaciar Perito Moreno",
-	    "type":"attraction",
-	    "latitude":-50.4690325,
-	    "longitude":-73.0298567,
-	    "province":null,
-	    "city":null,
-	    "distance_km":0.0
+	 "type":"attraction",
+	 "latitude":-50.4690325,
+	 "longitude":-73.0298567,
+	 "province":null,
+	 "city":null,
+	 "distance_km":0.0
    }
   ],
   "pagination": {
     "total":1,
-	   "limit":10,
-	   "offset":0,
-	   "has_next":false,
-	   "has_prev":false
+	"limit":10,
+	"offset":0,
+	"has_next":false,
+	"has_prev":false
   }
 }
 ```
