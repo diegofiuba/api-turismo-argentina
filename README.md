@@ -38,12 +38,40 @@ Support query parameters for:
 - limit &rarr; number of results (default:10)
 - offset &rarr; pagination offset
 
-### Examples
+### Example Request
 
 ```http
 GET /places?keywords=cerro
 GET /places?city=salta
 GET /places?latitude=-34.6&longitude=-58.38&radius=50
+GET /places/?keywords=glaciar%20perito%20moreno&latitude=-50.4690325&longitude=-73.0298567&radius=0
+```
+
+### Example Response
+
+```http
+{
+  "success":true,
+  "message":"Places retrieved successfully",
+  "data":[
+   {
+     "name":"Glaciar Perito Moreno",
+	    "type":"attraction",
+	    "latitude":-50.4690325,
+	    "longitude":-73.0298567,
+	    "province":null,
+	    "city":null,
+	    "distance_km":0.0
+   }
+  ],
+  "pagination": {
+    "total":1,
+	   "limit":10,
+	   "offset":0,
+	   "has_next":false,
+	   "has_prev":false
+  }
+}
 ```
 
 ## How to run
