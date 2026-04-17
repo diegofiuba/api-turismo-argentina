@@ -1,14 +1,13 @@
 import pandas as pd
 import numpy as np
 import math
-from app.repositories.csv_repository import CSVRepository
-
-repo = CSVRepository("data/lugares_turisticos_argentina.csv")
+from app.repositories.base_repository import BaseRepository
 
 class PlaceService:
+    def __init__(self,repository: BaseRepository):
+        self.repository = repository
 
-    @staticmethod
-    def __clean(records):
+    def __clean(self,records):
         clean_records = []
         for row in records:
             clean_row = {}
@@ -21,8 +20,7 @@ class PlaceService:
         return clean_records
 
     """ Return places """
-    @staticmethod
-    def get_places(
+    def get_places(self,
         limit: int = 10,
         offset: int = 0,
         province: str = None,
@@ -32,7 +30,7 @@ class PlaceService:
         longitude: float = None,
         radius: float = None
     ):
-        df = repo.get_places()
+        df = self.repository.get_places()
 
         # filter places
         if province:
@@ -81,7 +79,7 @@ class PlaceService:
         # pagination			
         df = df.iloc[ offset : offset+limit ]
         		
-        records = PlaceService.__clean(df.to_dict(orient="records"))
+        records = self.__clean(df.to_dict(orient="records"))
         return {
             "success": True,
             "message": "Places retrieved successfully",

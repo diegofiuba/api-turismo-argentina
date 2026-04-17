@@ -1,8 +1,13 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Depends
 from fastapi.responses import JSONResponse
+from app.repositories.csv_repository import CSVRepository
 from app.services.place_service import PlaceService
 
 router = APIRouter()
+
+def get_place_service()-> PlaceService:
+    repo = CSVRepository("data/lugares_turisticos_argentina.csv")
+    return PlaceService(repository=repo)
 
 @router.get("/",description="Get a list of places")
 def get_places(limit: int = Query(10,ge=1,le=100,description="Limit of places to list"),
@@ -12,7 +17,9 @@ def get_places(limit: int = Query(10,ge=1,le=100,description="Limit of places to
                keywords: str = Query(None,description="keywords to find a place"),
                latitude: float = Query(None,ge=-90,le=90,description="latitude to find nearby places"),
                longitude: float = Query(None,ge=-180,le=180,description="longitude to find nearby places"), 
-               radius: float = Query(None,ge=0,le=1000,description="radius to find nearby places")):
+               radius: float = Query(None,ge=0,le=1000,description="radius to find nearby places"),
+               place_service: PlaceService = Depends(get_place_service)
+               ):
 
     # parameters validation			   
     if radius is not None and (latitude is None or longitude is None):
@@ -39,4 +46,4 @@ def get_places(limit: int = Query(10,ge=1,le=100,description="Limit of places to
             }        
         )        
     
-    return PlaceService.get_places(limit,offset,province,city,keywords,latitude,longitude,radius)
+    return place_service.get_places(limit,offset,province,city,keywords,latitude,longitude,radius)

@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 from app.routes import places
 
 app = FastAPI(title="API de turismo de Argentina")
