@@ -1,13 +1,9 @@
 from fastapi import APIRouter, Query, Depends
 from fastapi.responses import JSONResponse
-from app.repositories.csv_repository import CSVRepository
 from app.services.place_service import PlaceService
+from dependencies import get_place_service
 
 router = APIRouter()
-
-def get_place_service()-> PlaceService:
-    repo = CSVRepository("data/lugares_turisticos_argentina.csv")
-    return PlaceService(repository=repo)
 
 @router.get("/",description="Get a list of places")
 def get_places(limit: int = Query(10,ge=1,le=100,description="Limit of places to list"),
